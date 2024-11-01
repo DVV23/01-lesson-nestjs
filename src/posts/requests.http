@@ -1,0 +1,12 @@
+### GET all posts
+
+GET http://localhost:3000/posts
+
+###GET post by ID
+GET http://localhost:3000/posts/3
+
+### Get post by userId 
+GET http://localhost:3000/posts/by-user?userId=3
+
+### Get post by userId and title
+GET http://localhost:3000/posts/filters?userId=6&id=54
