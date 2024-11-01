@@ -10,3 +10,14 @@ GET http://localhost:3000/posts/by-user?userId=3
 
 ### Get post by userId and title
 GET http://localhost:3000/posts/filters?userId=6&id=54
+
+### Create post
+POST http://localhost:3000/posts/createpost
+content-type: application/json
+
+{
+    "userId":23,
+    "title":"Wanna BE A NEST JS MASTER",
+    "body": "WANT TO BECOME A NEST JS MASTER FROM ZERO TO HERO"
+
+}

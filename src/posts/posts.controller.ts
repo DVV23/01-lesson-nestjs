@@ -1,12 +1,15 @@
 import {
   BadRequestException,
+  Body,
   Controller,
   Get,
   Param,
+  Post,
   Query,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { IPost } from '@src/models/post.interface';
+import { CreatePostDto } from '@src/dtos/create-post-dto';
 
 @Controller('posts')
 export class PostsController {
@@ -17,9 +20,11 @@ export class PostsController {
     return await this.postsService.getAllPosts();
   }
   @Get('/by-user')
-  async getPostByUserId(@Query('userId') userId: string): Promise<IPost> {
+  async getPostsByUserId(
+    @Query('userId') userId: string,
+  ): Promise<IPost | IPost[]> {
     if (!userId) throw new BadRequestException('Error in userId query');
-    return await this.postsService.getPostByUserId(+userId);
+    return await this.postsService.getPostsByUserId(+userId);
   }
   @Get('/filters')
   async getPostUsingFilters(
@@ -35,5 +40,9 @@ export class PostsController {
   @Get('/:id')
   async getPostById(@Param('id') id: string): Promise<IPost> {
     return await this.postsService.getPostById(id);
+  }
+  @Post('/createpost')
+  async createPost(@Body() body: CreatePostDto) {
+    return await this.postsService.createPost(body);
   }
 }
